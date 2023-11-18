@@ -10,18 +10,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     private float yVelocity = 0;
 
-    public float moveSpeed = 500;
-
-    [Range(0.0f, 50f)]
-    public float jumpVelocity = 5;
-
-    [Range(0.0f, 30f)]
-    public float gravityJumpUp = 10;
-    [Range(0.0f, 30f)]
-    public float gravityJumpFall = 10;
-    [Range(0.0f, 30f)]
-    public float gravityFall = 10;
-
     private enum PlayerState {
         ON_FLOOR,
         JUMP_UP,
@@ -31,17 +19,39 @@ public class PlayerController : MonoBehaviour
     private PlayerState state;
     private float input;
 
+    [Header("The Basics")]
+    [Tooltip("How quickly the player moves")]
+    public float moveSpeed = 500;
+
+    [Tooltip("How much force the player jumps with")]
+    [Range(0.0f, 50f)]
+    public float jumpVelocity = 5;
+
+
+    [Header("Gravity")]
+    [Tooltip("Gravity while player is moving up and holding up")]
+    [Range(0.0f, 30f)]
+    public float gravityJumpUp = 10;
+    [Tooltip("Gravity when jump is released and player is moving up")]
+    [Range(0.0f, 30f)]
+    public float gravityJumpFall = 10;
+    [Tooltip("Gravity when player is falling")]
+    [Range(0.0f, 30f)]
+    public float gravityFall = 10;
+
+    [Header("Timing Windows")]
     [Tooltip("How many seconds a jump input is stored for")]
-    [Range(0.0f, 0.5f)]
+    [Range(0.0f, 0.2f)]
     public double jumpCutoff = 0.2;
     private double jumpBuffer = 100; //used as the value to track jump input
 
-    [Tooltip("How many seconds a player has to press jump when walking off platforms")]
-    [Range(0.0f, 0.5f)]
+    [Tooltip("Number of extra seconds a player can jump after falling")]
+    [Range(0.0f, 0.2f)]
     public double fallCutoff = 0.1;
     private double floorBuffer = 100;
 
-    [Range(0.1f, 1.5f)]
+    [Tooltip("Maximum time a player can hold jump before airtime ends")]
+    [Range(0.1f, 1.0f)]
     public double maxTimeInAir = 0.8;
     private double timeInAir = 0;
 

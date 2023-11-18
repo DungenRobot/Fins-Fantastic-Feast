@@ -100,10 +100,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398f2f0b1d15342ccb439508bbb5f83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
-  jumpVelocity: 15
-  jumpCutoff: 0.2
-  fallCutoff: 0.1
+  moveSpeed: 320.5
+  jumpVelocity: 10.3
+  gravityJumpUp: 8.9
+  gravityJumpFall: 25
+  gravityFall: 19.1
+  jumpCutoff: 0.10300000011920929
+  fallCutoff: 0.07000000029802322
+  maxTimeInAir: 0.4300000071525574
 --- !u!114 &2729887489709832124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,8 +134,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -140,9 +144,9 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!70 &7349419126215437353
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -152,7 +156,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6912169556345378711}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5ccb933b8481d4eabad6b68da42e340b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
