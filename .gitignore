@@ -26,6 +26,23 @@
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio Code folder
+.vscode
+
+### macOS ###
+# General
+*/.DS_Store
+*/.AppleDouble
+*/.LSOverride
+
+# Icon must end with two \r
+*/Icon
+
+
+# Thumbnails
+*/._*
+
+
 # Gradle cache directory
 .gradle/
 

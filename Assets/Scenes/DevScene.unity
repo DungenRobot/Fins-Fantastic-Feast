@@ -301,6 +301,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1293186067}
   - component: {fileID: 1293186066}
+  - component: {fileID: 1293186068}
+  - component: {fileID: 1293186069}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -375,6 +377,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1293186068
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293186065}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &1293186069
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293186065}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1028882783658505005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -499,11 +573,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 748111166482613723, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.95
+      value: -5.922
       objectReference: {fileID: 0}
     - target: {fileID: 748111166482613723, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.17
+      value: -1.299
       objectReference: {fileID: 0}
     - target: {fileID: 748111166482613723, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
       propertyPath: m_LocalPosition.z
@@ -537,9 +611,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_SleepingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1533735632442088872, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6912169556345378711, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: moveSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: jumpCutoff
+      value: 0.1459999978542328
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: gravityFall
+      value: 10.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: Gravity_fall
+      value: 15.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: jumpVelocity
+      value: 4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: gravityJumpUp
+      value: 6.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: Gravity_jump_up
+      value: 13.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: gravityJumpFall
+      value: 13.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: Gravity_jump_fall
+      value: 19.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
