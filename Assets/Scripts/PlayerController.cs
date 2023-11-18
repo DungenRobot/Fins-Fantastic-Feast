@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D body;
     private float yVelocity = 0;
+    private float yAcceleration = 0;
 
     private enum PlayerState {
         ON_FLOOR,
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        yAcceleration = 0;
 
         if (IsOnGround()) { floorBuffer = 0; }
 
@@ -88,8 +90,18 @@ public class PlayerController : MonoBehaviour
                 StateFall();
                 break;
         }
+
+        //acceleration applied in two steps for discrete physics reasons
+        //A framerate that changes often would get timing wrong without this
+        // (Time.deltaTime != this frame, Time.deltaTime = last frame)
+        // This technically isn't correct either because we're modifying the acceleration but I have limits
+
+        yVelocity -= yAcceleration / 2;
+
         //apply velocity based on input and stored velocities
         body.velocity = new Vector2(input * moveSpeed * Time.fixedDeltaTime, yVelocity);
+
+        yVelocity -= yAcceleration / 2;
 
         //update buffer values
         jumpBuffer += Time.fixedDeltaTime;
@@ -99,7 +111,7 @@ public class PlayerController : MonoBehaviour
     //user is on the floor
     private void StateOnFloor()
     {
-        yVelocity = -gravityFall;
+        yVelocity = -gravityFall / 3;
 
         bool userJumps = jumpBuffer <= jumpCutoff;
         bool notOnFloor = floorBuffer != 0;
@@ -118,7 +130,7 @@ public class PlayerController : MonoBehaviour
     //a lower gravity is applied here
     private void StateJumpUp()
     {
-        yVelocity -= gravityJumpUp * Time.fixedDeltaTime;
+        yAcceleration = gravityJumpUp * Time.fixedDeltaTime;
         timeInAir += Time.fixedDeltaTime;
 
         if (timeInAir > maxTimeInAir)
@@ -144,7 +156,7 @@ public class PlayerController : MonoBehaviour
 
     private void StateJumpFall()
     {
-        yVelocity -= gravityJumpFall * Time.fixedDeltaTime;
+        yAcceleration = gravityJumpFall * Time.fixedDeltaTime;
 
         bool falling = yVelocity < 0;
 
@@ -156,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
     private void StateFall()
     {
-        yVelocity -= gravityFall * Time.fixedDeltaTime;
+        yAcceleration = gravityFall * Time.fixedDeltaTime;
 
         bool stillCanJump = floorBuffer < fallCutoff;
         bool wantsToJump = jumpBuffer < jumpCutoff;
@@ -183,7 +195,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsOnGround()
     {
-        const float playerWidth = 1.5f;
+        const float playerWidth = 1.3f;
         const float playerHeight = 1;
         Vector2 playerPos = new(transform.position.x, transform.position.y);
         Vector2 boxSize = new(playerWidth - 0.2f, 0.3f);
