@@ -31,13 +31,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gravity")]
     [Tooltip("Gravity while player is moving up and holding up")]
-    [Range(0.0f, 30f)]
+    [Range(0.0f, 80f)]
     public float gravityJumpUp = 10;
     [Tooltip("Gravity when jump is released and player is moving up")]
-    [Range(0.0f, 30f)]
+    [Range(0.0f, 80f)]
     public float gravityJumpFall = 10;
     [Tooltip("Gravity when player is falling")]
-    [Range(0.0f, 30f)]
+    [Range(0.0f, 80f)]
     public float gravityFall = 10;
 
     [Header("Timing Windows")]
