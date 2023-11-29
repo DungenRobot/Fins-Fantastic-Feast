@@ -200,7 +200,12 @@ public class PlayerController : MonoBehaviour
         Vector2 playerPos = new(transform.position.x, transform.position.y);
         Vector2 boxSize = new(playerWidth - 0.2f, 0.3f);
         RaycastHit2D cast = Physics2D.BoxCast(playerPos, boxSize, 0f, Vector2.down, playerHeight / 1.9f);
-        return cast.collider != null;
+        
+        if (cast.collider == null) {
+            return false;
+        }
+
+        return cast.collider.gameObject.CompareTag("floor");
     }
 
 }
