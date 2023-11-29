@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public int cheese = 0;
     // Start is called before the first frame update
     void Start()
     {

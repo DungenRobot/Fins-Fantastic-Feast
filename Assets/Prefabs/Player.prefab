@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7349419126215437353}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.95, y: -1.17, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,7 +105,7 @@ MonoBehaviour:
   gravityJumpUp: 8.9
   gravityJumpFall: 25
   gravityFall: 19.1
-  jumpCutoff: 0.10300000011920929
+  jumpCutoff: 0.07999999821186066
   fallCutoff: 0.07000000029802322
   maxTimeInAir: 0.4300000071525574
 --- !u!114 &2729887489709832124
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9defdae2af37f46ebba64ad36c7d3c56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cheese: 0
 --- !u!50 &1533735632442088872
 Rigidbody2D:
   serializedVersion: 4
