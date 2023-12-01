@@ -5,15 +5,13 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int cheese = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void getCheese(int amt) { cheese+=amt; }
+    void takeDamage(uint amt) {
+        if (cheese < amt) {
+            
+            return;
+        }
+        cheese--;
     }
 }
