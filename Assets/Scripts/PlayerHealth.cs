@@ -9,9 +9,7 @@ public class PlayerHealth : MonoBehaviour
     void getCheese(int amt) { cheese+=amt; }
     void takeDamage(uint amt) {
         if (cheese < amt) {
-            
-            return;
-        }
-        cheese--;
+            //THERE SHOULD BE DEATH HERE
+        } else cheese--;
     }
 }
