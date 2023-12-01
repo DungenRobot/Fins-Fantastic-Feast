@@ -7,8 +7,8 @@ public class CameraController : MonoBehaviour
 {
 
     public GameObject target;
-    public float x_offset;
-    public float y_pos;
+    public float xOffset;
+    public float yPos;
 
 
     // Start is called before the first frame update
@@ -22,11 +22,11 @@ public class CameraController : MonoBehaviour
     {
         Vector3 new_pos = transform.position;
 
-        new_pos.y = y_pos;
+        new_pos.y = yPos;
 
-        if (transform.position.x < target.transform.position.x + x_offset)
+        if (transform.position.x < target.transform.position.x + xOffset)
         {
-            new_pos.x = target.transform.position.x + x_offset;
+            new_pos.x = target.transform.position.x + xOffset;
         }
 
         transform.position = new_pos;
