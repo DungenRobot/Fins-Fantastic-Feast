@@ -30,8 +30,6 @@ public class EndOfLevel : MonoBehaviour
         {
             int cheese = collider.gameObject.GetComponent<PlayerHealth>().cheese;
 
-            Debug.Log(cheese);
-
             if (cheese > PerfectScore)
             {
                 SceneManager.LoadScene("Good");

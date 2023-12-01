@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DevScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Endings/Bad.unity
+    guid: bb230cc1929856244b0ceb7cfee65208
+  - enabled: 1
+    path: Assets/Scenes/Endings/Good.unity
+    guid: 9e9c2992ff42828458308c9089818a60
+  - enabled: 1
+    path: Assets/Scenes/Endings/Mid.unity
+    guid: 6364766810cedb4418f9de05f6082faf
   m_configObjects: {}
