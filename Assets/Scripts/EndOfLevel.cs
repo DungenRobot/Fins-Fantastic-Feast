@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class EndOfLevel : MonoBehaviour
 {
 
-    public int GoodScore = 0;
+    public int GoodScore = 1;
     public int PerfectScore = 16;
 
 
@@ -30,11 +30,11 @@ public class EndOfLevel : MonoBehaviour
         {
             int cheese = collider.gameObject.GetComponent<PlayerHealth>().cheese;
 
-            if (cheese > PerfectScore)
+            if (cheese >= PerfectScore)
             {
                 SceneManager.LoadScene("Good");
             }
-            else if (cheese > GoodScore)
+            else if (cheese >= GoodScore)
             {
                 SceneManager.LoadScene("Mid");
             } 
