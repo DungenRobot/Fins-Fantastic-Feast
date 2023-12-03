@@ -13,6 +13,9 @@ public class damagePlayer : MonoBehaviour
     }
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.tag == "Player") { collision.SendMessage("takeDamage",amount); }
+        if (collision.tag == "Player") {
+            collision.SendMessage("takeDamage",amount);
+            SendMessageUpwards("damageDealt",null,SendMessageOptions.DontRequireReceiver);
+        }
 	}
 }

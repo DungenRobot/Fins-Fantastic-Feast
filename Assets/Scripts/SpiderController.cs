@@ -47,4 +47,8 @@ public class SpiderController : MonoBehaviour
     void PlayerExit() {
         isDescending = false;
     }
+
+    void damageDealt() {
+        isDescending = false;
+    }
 }
