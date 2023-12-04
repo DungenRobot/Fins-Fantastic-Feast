@@ -139,17 +139,19 @@ public class BatController : MonoBehaviour{
 
     private void behavior_ASCENDING() {
         between += LPS3 * Time.deltaTime;
+        Vector3 nextPos;
         if (between < 1) {
-            Vector3 nextPos = new Vector3 {
+            nextPos = new Vector3 {
                 x = Mathf.Lerp(targetPos2.x, endPos.x, between),
                 y = Mathf.Lerp(targetPos2.y, endPos.y, LerpSmooth(between)),
                 z = targetPos2.z
             };
-            selfPos.position = nextPos;
         } else {
             between = 0;
-            returnToStart();
+            nextPos = endPos;
+            batMode = batState.SLEEPING_REVERSED;
         }
+        selfPos.position = nextPos;
     }
 
     private void behavior_ASCENDING_REVERSED() {
@@ -166,11 +168,6 @@ public class BatController : MonoBehaviour{
             nextPos = startPos;
             batMode = batState.SLEEPING;
         }
-    }
-
-    private void returnToStart() {//its named this instead of Reset because Reset is already taken
-        batMode = batState.SLEEPING;
-        selfPos.position = startPos;
     }
 
     void PlayerDetected() {
