@@ -16,7 +16,7 @@ public class BatController : MonoBehaviour{
     public float delay; //how many seconds from detection until attack
     private float timer;//used for waiting
     private float between = 0;//used for LERPing
-    public float LPS1, LPS2, LPS3; //used for LERPing between points in the path traveled
+    private float LPS1, LPS2, LPS3; //used for LERPing between points in the path traveled
     private batState batMode = batState.SLEEPING; //used for saving what state the bat is in
     void Start(){
         //defining positions
@@ -34,9 +34,9 @@ public class BatController : MonoBehaviour{
         float dist1 = dist(startPos, targetPos1);
         float dist2 = dist(targetPos1,targetPos2);
         float dist3 = dist(targetPos2, endPos);
-        LPS1 = dist1 / unitsPerSecond;
-        LPS2 = dist2 / unitsPerSecond;
-        LPS3 = dist3 / unitsPerSecond;
+        LPS1 = unitsPerSecond / dist1;
+        LPS2 = unitsPerSecond / dist2;
+        LPS3 = unitsPerSecond/ dist3;
         //setting other things
         timer = delay;
     }

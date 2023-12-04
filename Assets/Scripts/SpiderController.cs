@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpiderController : MonoBehaviour
 {
-    public int unitsPerSecond=2; // how fast the spider moves
+    public int unitsPerSecond; // how fast the spider moves
     private bool isDescending = false; // to determine which direction the spider is moving
     private float lerpPerSecond; //used to determine where the spider should be
     private float between=0; //see above
@@ -18,7 +18,7 @@ public class SpiderController : MonoBehaviour
         float distToTravel = container.size.y - (body.radius * 2);
         endPosition = startPosition;
         endPosition -= distToTravel;
-        lerpPerSecond = distToTravel / unitsPerSecond;
+        lerpPerSecond = unitsPerSecond / distToTravel;
     }
 
 	private void Update() {
