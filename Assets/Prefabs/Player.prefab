@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cheese: 0
+  iTime: 0.5
 --- !u!50 &1533735632442088872
 Rigidbody2D:
   serializedVersion: 4
