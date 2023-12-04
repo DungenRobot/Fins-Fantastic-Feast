@@ -19,6 +19,7 @@ public class BatController : MonoBehaviour{
     private Transform selfPos;
     public float unitsPerSecond; //on average how fast the bat travels in units per second
     public float delay; //how many seconds from detection until attack
+    public GameObject target;
     private float timer;//used for waiting
     private float between = 0;//used for LERPing
     private float LPS1, LPS2, LPS3; //used for LERPing between points in the path traveled
@@ -28,7 +29,7 @@ public class BatController : MonoBehaviour{
         selfPos = GetComponent<Transform>();
         startPos = selfPos.position;
         endPos = startPos;
-        BoxCollider2D scaler = GetComponentInChildren<BoxCollider2D>();
+        BoxCollider2D scaler = target.GetComponent<BoxCollider2D>();
         Transform hitPos = scaler.GetComponent<Transform>();
         endPos.x += (hitPos.position.x - startPos.x) * 2;
         targetPos1 = hitPos.position;
@@ -41,7 +42,7 @@ public class BatController : MonoBehaviour{
         float dist3 = dist(targetPos2, endPos);
         LPS1 = unitsPerSecond / dist1;
         LPS2 = unitsPerSecond / dist2;
-        LPS3 = unitsPerSecond/ dist3;
+        LPS3 = unitsPerSecond / dist3;
         //setting other things
         timer = delay;
     }
@@ -80,6 +81,7 @@ public class BatController : MonoBehaviour{
             timer = delay;
             batMode = (batMode == batState.WAITING) ? batState.DESCENDING : batState.DESCENDING_REVERSED;
         } else {
+            between = 0;
             timer -= Time.deltaTime;
         }
     }
@@ -131,8 +133,8 @@ public class BatController : MonoBehaviour{
             };
         } else {
             between = 0;
-            nextPos = targetPos2;
-            batMode = batState.ASCENDING;
+            nextPos = (batMode == batState.ATTACKING) ? targetPos2 : targetPos1;
+            batMode = (batMode == batState.ATTACKING) ? batState.ASCENDING : batState.ASCENDING_REVERSED;
         }
         selfPos.position = nextPos;
     }
@@ -146,26 +148,40 @@ public class BatController : MonoBehaviour{
                 y = Mathf.Lerp(targetPos2.y, endPos.y, LerpSmooth(between)),
                 z = targetPos2.z
             };
+            selfPos.position = nextPos;
         } else {
-            between = 0;
-            nextPos = endPos;
-            batMode = batState.SLEEPING_REVERSED;
+            goToSleep();
         }
-        selfPos.position = nextPos;
     }
 
     private void behavior_ASCENDING_REVERSED() {
         between += LPS1 * Time.deltaTime;
         Vector3 nextPos;
-        if (between < 0) {
+        if (between < 1) {
             nextPos = new Vector3 {
-                x = Mathf.Lerp(targetPos2.x, startPos.x, between),
-                y = Mathf.Lerp(targetPos2.y, startPos.y, LerpSmooth(between)),
-                z = targetPos2.z
+                x = Mathf.Lerp(targetPos1.x, startPos.x, between),
+                y = Mathf.Lerp(targetPos1.y, startPos.y, LerpSmooth(between)),
+                z = targetPos1.z
             };
+            selfPos.position = nextPos;
         } else {
-            between = 0;
-            nextPos = startPos;
+            goToSleep();
+        }
+    }
+
+    private void goToSleep() {
+        Transform p = target.GetComponent<Transform>();
+        p.localPosition = new Vector3 {
+            x = -p.localPosition.x,
+            y = p.localPosition.y,
+            z = p.localPosition.z
+        };
+        between = 0;
+        if (batMode == batState.ASCENDING) {
+            selfPos.position = endPos;
+            batMode = batState.SLEEPING_REVERSED;
+        } else {
+            selfPos.position = startPos;
             batMode = batState.SLEEPING;
         }
     }
