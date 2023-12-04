@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 264479442}
   m_Layer: 0
   m_Name: Wine Platform (4)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1945,7 +1945,7 @@ GameObject:
   - component: {fileID: 697464980}
   m_Layer: 0
   m_Name: Wine Glass Platform
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,7 +2208,7 @@ GameObject:
   - component: {fileID: 768224955}
   m_Layer: 0
   m_Name: Wine Platform (5)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2729,7 +2729,7 @@ GameObject:
   - component: {fileID: 921184120}
   m_Layer: 0
   m_Name: Fork Platform (2)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3035,7 +3035,7 @@ GameObject:
   - component: {fileID: 1033074859}
   m_Layer: 0
   m_Name: Wine Platform (6)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3826,6 +3826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8207657020474207028, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
+      propertyPath: jumpVelocity
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4272,7 +4276,7 @@ GameObject:
   - component: {fileID: 1383823592}
   m_Layer: 0
   m_Name: Fork Platform (3)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4468,7 +4472,7 @@ GameObject:
   - component: {fileID: 1415090725}
   m_Layer: 0
   m_Name: Candelabra (1)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5064,7 +5068,7 @@ GameObject:
   - component: {fileID: 1485629924}
   m_Layer: 0
   m_Name: Fork Platform (1)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5078,8 +5082,8 @@ Transform:
   m_GameObject: {fileID: 1485629922}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.62, y: 1.2735, z: 5.7722273}
-  m_LocalScale: {x: 0.7651, y: 0.6697, z: 1}
+  m_LocalPosition: {x: -21.6345, y: 1.2735, z: 4.59}
+  m_LocalScale: {x: 0.77803016, y: 0.6697, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1124866681}
@@ -5576,7 +5580,7 @@ GameObject:
   - component: {fileID: 1742702607}
   m_Layer: 0
   m_Name: Wine Glass Platform (1)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6034,7 +6038,7 @@ GameObject:
   - component: {fileID: 1857300180}
   m_Layer: 0
   m_Name: Candelabra (2)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6575,7 +6579,7 @@ GameObject:
   - component: {fileID: 1918782337}
   m_Layer: 0
   m_Name: Wine Platform (3)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6907,7 +6911,7 @@ GameObject:
   - component: {fileID: 1937832569}
   m_Layer: 0
   m_Name: Wine Platform (2)
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
