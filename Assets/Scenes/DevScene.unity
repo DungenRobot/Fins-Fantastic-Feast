@@ -180,52 +180,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c18259ba0bb028642bed481381f92585, type: 3}
---- !u!1 &625720143 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 92551574512048808, guid: 7524f96ed0f37416ea2d8c15a30a78b7, type: 3}
-  m_PrefabInstance: {fileID: 2226566396295909428}
-  m_PrefabAsset: {fileID: 0}
---- !u!68 &625720148
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 625720143}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -10, y: 5}
-  - {x: -10, y: -5}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!1 &891742020 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6912169556345378711, guid: 334eb2bb55eaa42039edb90f8fb6b9ce, type: 3}
@@ -839,10 +793,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2392748919507843619, guid: 7524f96ed0f37416ea2d8c15a30a78b7, type: 3}
-      propertyPath: orthographic size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4165329394863827964, guid: 7524f96ed0f37416ea2d8c15a30a78b7, type: 3}
       propertyPath: target
       value: 
@@ -850,10 +800,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 92551574512048808, guid: 7524f96ed0f37416ea2d8c15a30a78b7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 625720148}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7524f96ed0f37416ea2d8c15a30a78b7, type: 3}
 --- !u!1001 &2353189405903977585
 PrefabInstance:
