@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
     //user is on the floor
     private void StateOnFloor()
     {
-        yVelocity = -gravityFall / 3;
+        yVelocity = -gravityFall / 100;
 
         bool userJumps = jumpBuffer <= jumpCutoff;
         bool notOnFloor = floorBuffer != 0;
@@ -195,8 +195,8 @@ public class PlayerController : MonoBehaviour
 
     private bool IsOnGround()
     {
-        const float playerWidth = 1.3f;
-        const float playerHeight = 1;
+        const float playerWidth = 1.2f;
+        const float playerHeight = 0.7f;
         Vector2 playerPos = new(transform.position.x, transform.position.y);
         Vector2 boxSize = new(playerWidth - 0.2f, 0.3f);
         RaycastHit2D cast = Physics2D.BoxCast(playerPos, boxSize, 0f, Vector2.down, playerHeight / 1.9f);
