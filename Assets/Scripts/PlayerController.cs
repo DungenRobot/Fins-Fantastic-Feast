@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D body;
+    private Animator animator;
+    private SpriteRenderer sprite;
     private float yVelocity = 0;
     private float yAcceleration = 0;
 
@@ -59,6 +62,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -66,6 +71,17 @@ public class PlayerController : MonoBehaviour
         //get user input
         input = Input.GetAxis("Horizontal");
         if (Input.GetAxis("Jump") > 0) { jumpBuffer = 0; }
+        animator.SetBool("is_moving", (input != 0));
+        animator.SetInteger("State", (int) state);
+
+        if (input > 0)
+        {
+            sprite.flipX = false;
+        }
+        else if (input < 0)
+        {
+            sprite.flipX = true;
+        }
     }
 
     void FixedUpdate()
