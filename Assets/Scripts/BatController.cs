@@ -70,6 +70,7 @@ public class BatController : MonoBehaviour{
                 behavior_DESCENDING_REVERSED();
                 break;
             case batState.ASCENDING_REVERSED:
+                behavior_ASCENDING_REVERSED();
                 break;
         }
     }
@@ -102,6 +103,19 @@ public class BatController : MonoBehaviour{
 
     private void behavior_DESCENDING_REVERSED() {
         between += LPS3 * Time.deltaTime;
+        Vector3 nextPos;
+        if (between < 1) {
+            nextPos = new Vector3 {
+                x = Mathf.Lerp(endPos.x, targetPos2.x, between),
+                y = Mathf.Lerp(endPos.y, targetPos2.y, LerpSmooth(between)),
+                z = endPos.z
+            };
+        } else {
+            between = 0;
+            nextPos = startPos;
+            batMode = batState.ATTACKING_REVERSED;
+        }
+        selfPos.position = nextPos;
     }
 
     private void behavior_ATTACKING() {
@@ -140,6 +154,18 @@ public class BatController : MonoBehaviour{
 
     private void behavior_ASCENDING_REVERSED() {
         between += LPS1 * Time.deltaTime;
+        Vector3 nextPos;
+        if (between < 0) {
+            nextPos = new Vector3 {
+                x = Mathf.Lerp(targetPos2.x, startPos.x, between),
+                y = Mathf.Lerp(targetPos2.y, startPos.y, LerpSmooth(between)),
+                z = targetPos2.z
+            };
+        } else {
+            between = 0;
+            nextPos = startPos;
+            batMode = batState.SLEEPING;
+        }
     }
 
     private void returnToStart() {//its named this instead of Reset because Reset is already taken
