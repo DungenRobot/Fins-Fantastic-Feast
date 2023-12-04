@@ -5,10 +5,15 @@ using UnityEngine;
 public class BatController : MonoBehaviour{
     private enum batState {
         SLEEPING,
+        SLEEPING_REVERSED,
         WAITING,
+        WAITING_REVERSED,
         DESCENDING,
+        DESCENDING_REVERSED,
         ATTACKING,
-        ASCENDING
+        ATTACKING_REVERSED,
+        ASCENDING,
+        ASCENDING_REVERSED
     }; // used to determine what the bat should be doing
     private Vector3 startPos, targetPos1, targetPos2, endPos;//positions of the path
     private Transform selfPos;
@@ -45,18 +50,26 @@ public class BatController : MonoBehaviour{
     void Update(){
         switch (batMode) {
             case batState.SLEEPING: //skips entire update if bat is doing nothing
+            case batState.SLEEPING_REVERSED:
                 return;
             case batState.WAITING:
+            case batState.WAITING_REVERSED:
                 behavior_WAITING();
                 break;
             case batState.DESCENDING:
                 behavior_DESCENDING();
                 break;
             case batState.ATTACKING:
+            case batState.ATTACKING_REVERSED:
                 behavior_ATTACKING();
                 break;
             case batState.ASCENDING:
                 behavior_ASCENDING();
+                break;
+            case batState.DESCENDING_REVERSED:
+                behavior_DESCENDING_REVERSED();
+                break;
+            case batState.ASCENDING_REVERSED:
                 break;
         }
     }
@@ -64,7 +77,7 @@ public class BatController : MonoBehaviour{
     private void behavior_WAITING() {
         if (timer <= 0) {
             timer = delay;
-            batMode = batState.DESCENDING;
+            batMode = (batMode == batState.WAITING) ? batState.DESCENDING : batState.DESCENDING_REVERSED;
         } else {
             timer -= Time.deltaTime;
         }
@@ -87,12 +100,18 @@ public class BatController : MonoBehaviour{
         selfPos.position = nextPos;
     }
 
+    private void behavior_DESCENDING_REVERSED() {
+        between += LPS3 * Time.deltaTime;
+    }
+
     private void behavior_ATTACKING() {
         between += LPS2 * Time.deltaTime;
         Vector3 nextPos;
         if (between < 1) {
             nextPos = new Vector3 {
-                x = Mathf.Lerp(targetPos1.x, targetPos2.x, between),
+                x = (batMode == batState.ATTACKING) ?
+                    Mathf.Lerp(targetPos1.x, targetPos2.x, between):
+                    Mathf.Lerp(targetPos2.x, targetPos1.x, between),
                 y = targetPos1.y,
                 z = targetPos1.z
             };
@@ -119,21 +138,34 @@ public class BatController : MonoBehaviour{
         }
     }
 
+    private void behavior_ASCENDING_REVERSED() {
+        between += LPS1 * Time.deltaTime;
+    }
+
     private void returnToStart() {//its named this instead of Reset because Reset is already taken
         batMode = batState.SLEEPING;
         selfPos.position = startPos;
     }
 
     void PlayerDetected() {
-        batMode = (batMode == batState.SLEEPING) ? batState.WAITING : batMode;//activates bat if bat is not already active, otherwise just assigns the value of batMode to itself
+        switch (batMode) {
+            case batState.SLEEPING:
+                batMode = batState.WAITING;
+                break;
+            case batState.SLEEPING_REVERSED:
+                batMode = batState.WAITING_REVERSED;
+                break;
+        }
     }
     
     private float LerpSmooth(float value) {
         float rVal = Mathf.Clamp(value, 0, 1);
         switch (batMode) {
             case batState.DESCENDING:
+            case batState.DESCENDING_REVERSED:
                 return Mathf.Sin((Mathf.PI / 2) * value);
             case batState.ASCENDING:
+            case batState.ASCENDING_REVERSED:
                 return (1 - Mathf.Cos((Mathf.PI / 2) * value));
         }
         return value;
