@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private float yVelocity = 0;
     private float yAcceleration = 0;
+    private float damage_effector = 0;
 
     private enum PlayerState {
         ON_FLOOR,
@@ -30,6 +31,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("How much force the player jumps with")]
     [Range(0.0f, 50f)]
     public float jumpVelocity = 5;
+
+    [Tooltip("How much force the player jumps with")]
+    [Range(0.0f, 50f)]
+    public float knockback_amount = 500;
+    
 
 
     [Header("Gravity")]
@@ -108,14 +114,18 @@ public class PlayerController : MonoBehaviour
         }
 
         //acceleration applied in two steps for discrete physics reasons
-        //A framerate that changes often would get timing wrong without this
+        //A framerate that changes often would get timing wrong without this 
         // (Time.deltaTime != this frame, Time.deltaTime = last frame)
         // This technically isn't correct either because we're modifying the acceleration but I have limits
 
+        
         yVelocity -= yAcceleration / 2;
 
         //apply velocity based on input and stored velocities
         body.velocity = new Vector2(input * moveSpeed * Time.fixedDeltaTime, yVelocity);
+
+        if (Math.Abs(damage_effector) > 0.1) body.velocity = new Vector2(damage_effector, yVelocity);
+        damage_effector *= 0.9f;
 
         yVelocity -= yAcceleration / 2;
 
@@ -222,6 +232,14 @@ public class PlayerController : MonoBehaviour
         }
 
         return cast.collider.gameObject.CompareTag("floor");
+    }
+
+    void takeDamage()
+    {
+        damage_effector = knockback_amount;
+        if (!sprite.flipX) damage_effector *= -1;
+        yVelocity = knockback_amount / 2f;
+
     }
 
 }
