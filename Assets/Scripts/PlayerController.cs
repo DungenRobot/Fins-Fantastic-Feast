@@ -236,6 +236,7 @@ public class PlayerController : MonoBehaviour
 
     void takeDamage()
     {
+        if (GetComponent<PlayerHealth>().isInv) return;
         damage_effector = knockback_amount;
         if (!sprite.flipX) damage_effector *= -1;
         yVelocity = knockback_amount / 2f;
