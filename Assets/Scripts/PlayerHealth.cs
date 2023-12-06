@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public int cheese = 0; //how much cheese the player has
     public float iTime; //how long the player is invulnerable in seconds
     public bool isInv = false;//used to determine whether or not player is invulnerable
+
+    public TMP_Text cheeseLabel;
     private float inv = 0; //used internally for invulnerability
     private SpriteRenderer display;
     private void Start() {
@@ -24,8 +27,14 @@ public class PlayerHealth : MonoBehaviour
         }
         display.color = Color.red;
     }
-    void getCheese(int amt) { cheese+=amt; }
-    void takeDamage(uint amt) {
+    void getCheese(int amt) 
+    {
+        cheese+=amt; 
+        cheeseLabel.text = cheese.ToString();
+    }
+
+    void takeDamage(uint amt) 
+    {
         if (isInv) return; //invulnerability guard clause
         if (cheese < amt) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -34,5 +43,6 @@ public class PlayerHealth : MonoBehaviour
             inv = iTime;
             isInv = true;
         };
+        cheeseLabel.text = cheese.ToString();
     }
 }
