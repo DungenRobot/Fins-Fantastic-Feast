@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ButtonScript : MonoBehaviour
 {
-    public Scene sene_to_switch_to;
+    public string scene_to_switch_to;
 
     public void click()
     {
-        
+        if (scene_to_switch_to == "quit")
+        {
+            Application.Quit();
+        }
+        else
+        {
+            SceneManager.LoadScene(scene_to_switch_to);
+        }
     }
 
 }
