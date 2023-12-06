@@ -24,7 +24,9 @@ public class BatController : MonoBehaviour{
     private float between = 0;//used for LERPing
     private float LPS1, LPS2, LPS3; //used for LERPing between points in the path traveled
     private batState batMode = batState.SLEEPING; //used for saving what state the bat is in
+    private Animator anim;
     void Start(){
+        anim = GetComponent<Animator>(); //getting animator
         //defining positions
         selfPos = GetComponent<Transform>();
         startPos = selfPos.position;
@@ -52,25 +54,32 @@ public class BatController : MonoBehaviour{
         switch (batMode) {
             case batState.SLEEPING: //skips entire update if bat is doing nothing
             case batState.SLEEPING_REVERSED:
-                return;
+                anim.SetBool("Moving", false);
+                break;
             case batState.WAITING:
             case batState.WAITING_REVERSED:
+                anim.SetBool("Moving", false);
                 behavior_WAITING();
                 break;
             case batState.DESCENDING:
+                anim.SetBool("Moving", true);
                 behavior_DESCENDING();
                 break;
             case batState.ATTACKING:
             case batState.ATTACKING_REVERSED:
+                anim.SetBool("Moving", true);
                 behavior_ATTACKING();
                 break;
             case batState.ASCENDING:
+                anim.SetBool("Moving", true);
                 behavior_ASCENDING();
                 break;
             case batState.DESCENDING_REVERSED:
+                anim.SetBool("Moving", true);
                 behavior_DESCENDING_REVERSED();
                 break;
             case batState.ASCENDING_REVERSED:
+                anim.SetBool("Moving", true);
                 behavior_ASCENDING_REVERSED();
                 break;
         }
