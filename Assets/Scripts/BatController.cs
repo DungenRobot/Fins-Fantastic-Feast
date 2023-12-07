@@ -24,9 +24,13 @@ public class BatController : MonoBehaviour{
     private float between = 0;//used for LERPing
     private float LPS1, LPS2, LPS3; //used for LERPing between points in the path traveled
     private batState batMode = batState.SLEEPING; //used for saving what state the bat is in
+    public GameObject Sprite;
     private Animator anim;
+    private Transform spritePos;
     void Start(){
-        anim = GetComponent<Animator>(); //getting animator
+        //getting components of Sprite Object
+        anim = Sprite.GetComponent<Animator>();
+        spritePos = Sprite.GetComponent<Transform>();
         //defining positions
         selfPos = GetComponent<Transform>();
         startPos = selfPos.position;
@@ -109,6 +113,7 @@ public class BatController : MonoBehaviour{
             nextPos = targetPos1;
             batMode = batState.ATTACKING;
         }
+        updateRotation(nextPos);
         selfPos.position = nextPos;
     }
 
@@ -126,6 +131,7 @@ public class BatController : MonoBehaviour{
             nextPos = startPos;
             batMode = batState.ATTACKING_REVERSED;
         }
+        updateRotation(nextPos);
         selfPos.position = nextPos;
     }
 
@@ -145,6 +151,7 @@ public class BatController : MonoBehaviour{
             nextPos = (batMode == batState.ATTACKING) ? targetPos2 : targetPos1;
             batMode = (batMode == batState.ATTACKING) ? batState.ASCENDING : batState.ASCENDING_REVERSED;
         }
+        updateRotation(nextPos);
         selfPos.position = nextPos;
     }
 
@@ -157,6 +164,7 @@ public class BatController : MonoBehaviour{
                 y = Mathf.Lerp(targetPos2.y, endPos.y, LerpSmooth(between)),
                 z = targetPos2.z
             };
+            updateRotation(nextPos);
             selfPos.position = nextPos;
         } else {
             goToSleep();
@@ -172,6 +180,7 @@ public class BatController : MonoBehaviour{
                 y = Mathf.Lerp(targetPos1.y, startPos.y, LerpSmooth(between)),
                 z = targetPos1.z
             };
+            updateRotation(nextPos);
             selfPos.position = nextPos;
         } else {
             goToSleep();
@@ -221,5 +230,13 @@ public class BatController : MonoBehaviour{
 
     private float dist(Vector3 v1, Vector3 v2) {//used my own because Vector3.distance wasn't giving correct results
         return Mathf.Sqrt(Mathf.Pow(v1.x - v2.x, 2) + Mathf.Pow(v1.y - v2.y, 2) + Mathf.Pow(v1.z - v2.z, 2));
+    }
+
+    private void updateRotation(Vector3 nextPos) {
+        float modifier = -Mathf.PI / 4;
+        float xDif = nextPos.x - selfPos.position.x;
+        float yDif = nextPos.y - selfPos.position.y;
+        float angle = (Mathf.Atan2(yDif, xDif) + modifier) * Mathf.Rad2Deg;
+        spritePos.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
