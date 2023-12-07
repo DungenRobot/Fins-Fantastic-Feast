@@ -27,6 +27,8 @@ public class BatController : MonoBehaviour{
     public GameObject Sprite;
     private Animator anim;
     private Transform spritePos;
+    [SerializeField] private AudioSource SwooshSoundEffect;
+
     void Start(){
         //getting components of Sprite Object
         anim = Sprite.GetComponent<Animator>();
@@ -93,6 +95,8 @@ public class BatController : MonoBehaviour{
         if (timer <= 0) {
             timer = delay;
             batMode = (batMode == batState.WAITING) ? batState.DESCENDING : batState.DESCENDING_REVERSED;
+            //Bridge
+            SwooshSoundEffect.Play();
         } else {
             between = 0;
             timer -= Time.deltaTime;
