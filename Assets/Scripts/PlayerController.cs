@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private float yVelocity = 0;
     private float yAcceleration = 0;
-    private float damage_effector = 0;
+    private float damage_effector_x = 0;
+    private float damage_effector_y = 0;
 
     private enum PlayerState {
         ON_FLOOR,
@@ -125,8 +126,9 @@ public class PlayerController : MonoBehaviour
         //apply velocity based on input and stored velocities
         body.velocity = new Vector2(input * moveSpeed * Time.fixedDeltaTime, yVelocity);
 
-        if (Math.Abs(damage_effector) > 0.1) body.velocity = new Vector2(damage_effector, yVelocity);
-        damage_effector *= 0.9f;
+        if (Math.Abs(damage_effector_x) > 0.1) body.velocity = new Vector2(damage_effector_x, yVelocity);
+        damage_effector_x *= 0.9f;
+        damage_effector_y *= 0.9f;
 
         yVelocity -= yAcceleration / 2;
 
@@ -237,11 +239,13 @@ public class PlayerController : MonoBehaviour
         return cast.collider.gameObject.CompareTag("floor");
     }
 
-    void takeDamage()
+    void takeDamage(GameObject Source)
     {
         if (GetComponent<PlayerHealth>().isInv) return;
-        damage_effector = knockback_amount;
-        if (!sprite.flipX) damage_effector *= -1;
+        Vector2 DamagePoint = new Vector2 { 
+            x = Source.GetComponent<Transform>().position.x, 
+            y = Source.GetComponent<Transform>().position.y
+        };
         yVelocity = knockback_amount / 2f;
 
     }

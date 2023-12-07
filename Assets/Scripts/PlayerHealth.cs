@@ -33,9 +33,9 @@ public class PlayerHealth : MonoBehaviour
         cheeseLabel.text = cheese.ToString();
     }
 
-    void takeDamage(uint amt) 
-    {
+    void takeDamage(GameObject Source) {
         if (isInv) return; //invulnerability guard clause
+        float amt = Source.GetComponent<damagePlayer>().amount;
         if (cheese < amt) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else {
