@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
     {
         cheese+=amt; 
         cheeseLabel.text = cheese.ToString();
-        CollectSoundEffect.Play();
+        CollectSoundEffect.Play(); //Bridge puts Audio
     }
 
     void takeDamage(GameObject Source) {
