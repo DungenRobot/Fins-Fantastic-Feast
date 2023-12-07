@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioSource jumpSoundEffect;
     private Rigidbody2D body;
     private Animator animator;
     private SpriteRenderer sprite;
@@ -217,6 +218,8 @@ public class PlayerController : MonoBehaviour
         //this prevents cases where a second jump results from a single input
         jumpBuffer = jumpCutoff * 2; 
         state = PlayerState.JUMP_UP;
+        //Bridge puts Audio
+        jumpSoundEffect.Play();
     }
 
     private bool IsOnGround()
