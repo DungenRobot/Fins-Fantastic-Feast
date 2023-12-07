@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpiderController : MonoBehaviour
 {
+    [SerializeField] private AudioSource WiggleSoundEffect;
     public int unitsPerSecond; // how fast the spider moves
     private bool isDescending = false; // to determine which direction the spider is moving
     private float lerpPerSecond; //used to determine where the spider should be
@@ -32,6 +33,8 @@ public class SpiderController : MonoBehaviour
                 between = (between + frameMove < 1) ? between + frameMove : 1; //checks whether or not the spider has reached its maximum descent, and adjusts accordingly
                 anim.SetBool("Moving", (between != 1));
             }
+            WiggleSoundEffect.Play();
+
         } else {
             anim.SetBool("Descending",false);
             if (between > 0) {
