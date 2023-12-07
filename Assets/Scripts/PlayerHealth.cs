@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private AudioSource CollectSoundEffect;
+    [SerializeField] private AudioSource HurtSoundEffect;
     public int cheese = 0; //how much cheese the player has
     public float iTime; //how long the player is invulnerable in seconds
     public bool isInv = false;//used to determine whether or not player is invulnerable
@@ -31,6 +33,7 @@ public class PlayerHealth : MonoBehaviour
     {
         cheese+=amt; 
         cheeseLabel.text = cheese.ToString();
+        CollectSoundEffect.Play();
     }
 
     void takeDamage(uint amt) 
@@ -44,5 +47,6 @@ public class PlayerHealth : MonoBehaviour
             isInv = true;
         };
         cheeseLabel.text = cheese.ToString();
+        HurtSoundEffect.Play();
     }
 }
