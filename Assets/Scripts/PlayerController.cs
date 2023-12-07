@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
-using UnityEditorInternal;
+using UnityEditor;
 using UnityEngine;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer sprite;
     private float yVelocity = 0;
     private float yAcceleration = 0;
-    private float damage_effector_x = 0;
-    private float damage_effector_y = 0;
+    private Vector2 damage_effector;
+    private float damage_effector_x;
 
     private enum PlayerState {
         ON_FLOOR,
@@ -126,9 +127,10 @@ public class PlayerController : MonoBehaviour
         //apply velocity based on input and stored velocities
         body.velocity = new Vector2(input * moveSpeed * Time.fixedDeltaTime, yVelocity);
 
+        
+
         if (Math.Abs(damage_effector_x) > 0.1) body.velocity = new Vector2(damage_effector_x, yVelocity);
         damage_effector_x *= 0.9f;
-        damage_effector_y *= 0.9f;
 
         yVelocity -= yAcceleration / 2;
 
@@ -241,12 +243,21 @@ public class PlayerController : MonoBehaviour
 
     void takeDamage(GameObject Source)
     {
+        //player is invulnerable. Do no knockback
         if (GetComponent<PlayerHealth>().isInv) return;
+
+        //position of the damage
         Vector2 DamagePoint = new Vector2 { 
             x = Source.GetComponent<Transform>().position.x, 
             y = Source.GetComponent<Transform>().position.y
         };
-        yVelocity = knockback_amount / 2f;
+
+        Vector2 PlayerPos = new(transform.position.x, transform.position.y);
+
+        Vector2 damage_effector = (PlayerPos - DamagePoint).normalized * knockback_amount;
+
+        damage_effector_x = damage_effector.x;
+        yVelocity = damage_effector.y / 2;
 
     }
 

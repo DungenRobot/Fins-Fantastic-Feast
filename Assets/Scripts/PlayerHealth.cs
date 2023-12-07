@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
@@ -27,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
             display.color = Color.white;
             return;
         }
-        display.color = Color.red;
+        display.color = Color.gray;
     }
     void getCheese(int amt) 
     {
