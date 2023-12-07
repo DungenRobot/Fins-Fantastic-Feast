@@ -12,8 +12,10 @@ public class GhostController : MonoBehaviour{
     private float lerpPerSecond;
     private float between=0;
     private int nextIndex=2;
+    private SpriteRenderer display;
     // Start is called before the first frame update
     void Start(){
+        display = GetComponent<SpriteRenderer>();
         selfPos = GetComponent<Transform>();
         //path initialization
         path = new Vector3[selfPos.childCount + 1];
@@ -47,10 +49,11 @@ public class GhostController : MonoBehaviour{
 
     void lerpReset(Vector3 nextPos) {
         //sets next position to move towards
+        display.flipX ^= (nextPos.x != selfPos.position.x);//<-- DO NOT REPLICATE. I AM A TRAINED DUMBASS WHO KNOWS THAT THIS IS A BAD IDEA
         moveFrom = moveTo;
         moveTo = nextPos;
         between = 0;
         float distance = Mathf.Sqrt( Mathf.Pow((moveFrom.x - moveTo.x), 2) + Mathf.Pow((moveFrom.y - moveTo.y), 2));
-        lerpPerSecond = distance/unitsPerSecond;
+        lerpPerSecond = unitsPerSecond/distance;
     }
 }
