@@ -261,4 +261,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    void bounce(GameObject Source) {
+        Vector2 DamagePoint = new Vector2 {
+            x = Source.GetComponent<Transform>().position.x,
+            y = Source.GetComponent<Transform>().position.y
+        };
+
+        Vector2 PlayerPos = new(transform.position.x, transform.position.y);
+
+        Vector2 damage_effector = (PlayerPos - DamagePoint).normalized * knockback_amount;
+
+        damage_effector_x = damage_effector.x;
+        yVelocity = damage_effector.y / 2;
+    }
+
 }
